@@ -11,7 +11,7 @@ function registerUser(id, email, telnumber, name, password) {
             const user = JSON.parse(data);
 
             if (user.length > 0) {
-                id = user[user.length-1].id + 1; // increase id
+                id = user[user.length-1].id + 1;
             }
 
             const user_object = user.map(element => {
