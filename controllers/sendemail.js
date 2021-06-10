@@ -1,6 +1,6 @@
-require('dotenv').config();
-const templatepass = require('../templates/resetpass');
-const fs = require('fs');
+require("dotenv").config();
+const templatepass = require("../templates/resetpass");
+const fs = require("fs");
 const nodemailer = require("nodemailer");
 
 function sendEmail(email, token, browser, os, os_version, ip) {
@@ -9,7 +9,7 @@ function sendEmail(email, token, browser, os, os_version, ip) {
             if (err) throw err;
             const user = JSON.parse(data);
 
-            const email_object = user.map(element => {
+            const email_object = user.map((element) => {
                 return element.email;
             });
 
@@ -25,25 +25,31 @@ function sendEmail(email, token, browser, os, os_version, ip) {
                     pass: process.env.EMAIL_PASS,
                 },
                 logger: true,
-                debug: true
+                debug: true,
             });
             const mailOptions = {
                 to: `${email}`,
-                subject: 'Your reset code to AlphaPets',
-                html: templatepass.resetTemplate(token, user_name, browser, os, os_version, ip)
+                subject: "Your reset code to AlphaPets",
+                html: templatepass.resetTemplate(
+                    token,
+                    user_name,
+                    browser,
+                    os,
+                    os_version,
+                    ip
+                ),
             };
             transporter.sendMail(mailOptions, (err, info) => {
                 if (err) {
                     reject(err);
-                }
-                else {
+                } else {
                     resolve(true);
                 }
             });
-        })
-    })
+        });
+    });
 }
 
 module.exports = {
-    sendEmail
-}
+    sendEmail,
+};

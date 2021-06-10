@@ -1,4 +1,11 @@
-function resetTemplate(token, user_name, web_browser, os_system, os_version, ip) {
+function resetTemplate(
+    token,
+    user_name,
+    web_browser,
+    os_system,
+    os_version,
+    ip
+) {
     return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
@@ -509,9 +516,9 @@ function resetTemplate(token, user_name, web_browser, os_system, os_version, ip)
           </tr>
         </table>
       </body>
-    </html>`
+    </html>`;
 }
 
 module.exports = {
-    resetTemplate
-}
+    resetTemplate,
+};
