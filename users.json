@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "name": "Diego",
+    "email": "diego-s.novaes@hotmail.com",
+    "telnumber": 11970151606,
+    "pass": "$2b$10$tuzWMBmewFggR2dgbsn/T.n319ZLCtVD1xaDCX23Xnv5WwjV7OP.e",
+    "passwordResetToken": "",
+    "passwordResetExpires_fulldate": ""
+  }
+]
