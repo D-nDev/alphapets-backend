@@ -123,7 +123,7 @@ previous token generated and sent by sms or email
   
 ## Tech Stack/Dependencies
 
-**Server:** Node, Express, NodeMailer, Crypto, Bcrypt, Cooki-parser, Fs, Dotenv, TotalVoice
+**Server:** Node, Express, NodeMailer, Crypto, Bcrypt, Cookie-parser, Fs, Dotenv, TotalVoice
 
   
 ## Demo
