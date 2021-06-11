@@ -13,7 +13,7 @@ function checkEmail(email, token) {
             const find_email = email_object.indexOf(email);
 
             if (find_email == -1) {
-                reject("Email not found");
+                reject("Email not found"); // reject the promise
             } else {
                 const expire = new Date();
                 expire.setHours(expire.getHours() + 1);
@@ -23,7 +23,7 @@ function checkEmail(email, token) {
 
                 fs.writeFile("users.json", JSON.stringify(user), (err) => {
                     if (err) throw err;
-                    resolve(user[find_email].email);
+                    resolve(user[find_email].email); // send the email back to the app.js, in order to send something to the front-end or whatever else
                 });
             }
         });

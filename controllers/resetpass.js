@@ -31,7 +31,7 @@ function resetPass(email, token, newpass) {
 
                 fs.writeFile("users.json", JSON.stringify(user), (err) => {
                     if (err) throw err;
-                    resolve("3");
+                    resolve("3"); // send back to the app.js, in order to send something to the front-end or whatever else
                 });
             }
         });

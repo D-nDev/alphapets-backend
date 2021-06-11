@@ -16,12 +16,12 @@ function LoginUser(email, password) {
 
             if (find_email != -1) {
                 if (bcrypt.compareSync(password, user[find_email].pass)) {
-                    resolve(user[find_email].name);
+                    resolve(user[find_email].name); // login ok, send the name back to the app.js, in order to send something to the front-end or whatever else
                 } else {
-                    reject("1");
+                    reject("1"); // incorrect password
                 }
             } else {
-                reject("0");
+                reject("0"); // email not found
             }
         });
     });

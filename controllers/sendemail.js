@@ -21,8 +21,8 @@ function sendEmail(email, token, browser, os, os_version, ip) {
                 port: 465,
                 secure: true,
                 auth: {
-                    user: process.env.EMAIL,
-                    pass: process.env.EMAIL_PASS,
+                    user: process.env.EMAIL, // your email in .env(recommended gmail)
+                    pass: process.env.EMAIL_PASS, // your password in .env
                 },
                 logger: true,
                 debug: true,
@@ -43,7 +43,7 @@ function sendEmail(email, token, browser, os, os_version, ip) {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(true);
+                    resolve(true); // send back to the app.js, in order to send something to the front-end or whatever else
                 }
             });
         });

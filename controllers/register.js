@@ -25,7 +25,7 @@ function registerUser(id, email, telnumber, name, password) {
             const find_telnumber = user_telnumber.indexOf(parseInt(telnumber));
 
             if (find_user != -1 || find_telnumber != -1) {
-                reject(false);
+                reject(false); // email or telnumber already exists
             } else {
                 let temp_user = {};
 
@@ -41,7 +41,7 @@ function registerUser(id, email, telnumber, name, password) {
 
                 fs.writeFile("users.json", JSON.stringify(user), (err) => {
                     if (err) throw err;
-                    resolve(true);
+                    resolve(true); // send true back to the app.js, in order to send something to the front-end or whatever else
                 });
             }
         });

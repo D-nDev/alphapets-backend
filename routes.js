@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookie_parser("1234"));
 
+// require all controllers, that have all functionalities
 const register = require("./controllers/register");
 const loginuser = require("./controllers/login");
 const checkemail = require("./controllers/checkemail");
@@ -15,6 +16,7 @@ const sendmail = require("./controllers/sendemail");
 const sendsms = require('./controllers/sendsms');
 const resetpass = require('./controllers/resetpass');
 
+// register a new user
 router.post("/register", (req, res) => {
   res.setHeader("Content-Type", "application/json");
 
@@ -35,6 +37,7 @@ router.post("/register", (req, res) => {
     });
 });
 
+// the login
 router.post("/login", (req, res) => {
   res.setHeader("Content-Type", "application/json");
 
@@ -46,8 +49,8 @@ router.post("/login", (req, res) => {
   login_user
     .then((result_response) => {
       console.log("Nome: " + result_response);
-      res.cookie("name", result_response, { maxAge: 172800000, signed: true });
-      res.cookie("email", email, { maxAge: 172800000, signed: true });
+      res.cookie("name", result_response, { maxAge: 172800000, signed: true }); // cookie valid for 3 days
+      res.cookie("email", email, { maxAge: 172800000, signed: true }); // cookie valid for 3 days
       res.send(result_response);
     })
     .catch((error) => {
@@ -55,12 +58,14 @@ router.post("/login", (req, res) => {
     });
 });
 
+// this should be called on the person wanna log-off
 router.post("/logout", (req, res) => {
   res.clearCookie("email");
   res.clearCookie("name");
   res.send("Ok");
 });
 
+// if you wanna test if the login is working, you can test with a integrated front-end or postman/imsonia
 router.get("/test", (req, res) => {
   if (!req.signedCookies.email) {
     res.send("Please log-in");
@@ -69,6 +74,7 @@ router.get("/test", (req, res) => {
   }
 });
 
+// forgot pass by email
 router.post("/forgotpass", (req, res) => {
   const email = req.body.email;
   const user_browser = req.body.user_browser;
@@ -96,6 +102,7 @@ router.post("/forgotpass", (req, res) => {
     });
 });
 
+// forgot pass by sms
 router.post("/forgotpass2", (req, res) => {
     const telnumber = req.body.telnumber;
     const token = crypto.randomBytes(20).toString('hex');
@@ -109,6 +116,8 @@ router.post("/forgotpass2", (req, res) => {
     })
 });
 
+
+// reset the password with code sent to the sms/email
 router.post("/resetpass", (req, res) => {
     const email = req.body.email;
     const token = req.body.token;

@@ -1,7 +1,7 @@
 require("dotenv").config();
 const fs = require("fs");
 const totalvoice = require("totalvoice-node");
-const client = new totalvoice(process.env.SMS_KEY);
+const client = new totalvoice(process.env.SMS_KEY); // your key from totalvoice
 
 function sendSms(usernumber, token) {
     return new Promise((resolve, reject) => {
@@ -27,7 +27,7 @@ function sendSms(usernumber, token) {
                     token +
                     "                                    " +
                     "Use your code at: " +
-                    "/resetpass";
+                    "/resetpass"; // sms message
                 client.sms
                     .enviar(
                         usernumber,
@@ -50,7 +50,7 @@ function sendSms(usernumber, token) {
                             JSON.stringify(user),
                             (err) => {
                                 if (err) throw err;
-                                resolve(true);
+                                resolve(true); // send back to the app.js, in order to send something to the front-end or whatever else
                             }
                         );
                     })
